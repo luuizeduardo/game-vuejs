@@ -49,8 +49,8 @@
             <section class="row log" v-show="is_new_game">
                 <div class="small-12 columns">
                     <ul>
-                        <li>
-                            
+                        <li v-for="(log, index) in arrayLog" :key="index" :class="log.class">
+                            {{ log.message }}
                         </li>
                     </ul>
                 </div>

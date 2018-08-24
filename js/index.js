@@ -3,7 +3,8 @@ new Vue({
     data: {
         progress_health_you: 100,
         progress_health_monster: 100,
-        is_new_game: false
+        is_new_game: false,
+        arrayLog: []
     },
     methods: {
         startNewGame: function() {
@@ -43,6 +44,7 @@ new Vue({
             var number = this.generateRandomNumber();
             
             this.progress_health_monster -= number;
+            this.arrayLog.push({message: 'Player hits monster for ' + number, class: 'player-turn'});
 
             this.validateHealth();
         },
@@ -51,6 +53,8 @@ new Vue({
             var number = this.generateRandomNumber();
             
             this.progress_health_you -= number;
+            this.arrayLog.push({message: 'Monster hits player for ' + number, class: 'monster-turn'});
+
             this.validateHealth();
         },
         
@@ -67,6 +71,8 @@ new Vue({
             var number = this.generateRandomNumber();
 
             this.progress_health_you += number;
+            this.arrayLog.push({message: 'Player heals himself for ' + number, class: 'player-turn'});
+
             this.monsterAttack();
         },
         
@@ -80,10 +86,6 @@ new Vue({
             let x = 0;
             x = Math.floor(Math.random() * (20 - 10)) + 10;
             return x;
-        },
-
-        logAttack: function(valueYouAttack, valueMonsterAttack) {
-
         }
     }
 });
