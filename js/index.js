@@ -64,6 +64,8 @@ new Vue({
 
             this.progress_health_monster -= number;
 
+            this.arrayLog.unshift({message: 'Player hits monster for ' + number, class: 'player-turn'});
+
             this.monsterAttack();
             this.validateHealth();
         },
